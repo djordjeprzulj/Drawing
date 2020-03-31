@@ -4,6 +4,8 @@ import drawing.model.Circle;
 import drawing.model.Point;
 import drawing.model.Rectangle;
 
+import java.util.Scanner;
+
 public class TestGeometry {
 
     public static void main(String[] args) {
@@ -19,7 +21,7 @@ public class TestGeometry {
 
         // vezba 5
         Point p3 = new Point(5, 6);
-        System.out.println("x=" + p3.getX() + ", y=" + p3.getY() + ", " + p3.isSelected());
+        System.out.println("x=" + p3.getX() + ", y=" + p3.getY() + ", selected=" + p3.isSelected());
 
         Point p4 = new Point(10, 20, true);
         p3.setSelected(p4.isSelected());
@@ -29,5 +31,18 @@ public class TestGeometry {
         System.out.println(p5.getX());
 
         Point p6 = new Point(p3.getX(), p3.getY());
+
+        System.out.println("Upisite parametre za kreiranje tacke:");
+        Scanner scanner = new Scanner(System.in);
+        String pointInput = scanner.nextLine();
+        String[] coordinates = pointInput.split(" ");
+        int inputX = Integer.parseInt(coordinates[0]);
+        int inputY = Integer.parseInt(coordinates[1]);
+        boolean selected = false;
+        if (coordinates.length == 3) {
+            selected = Boolean.parseBoolean(coordinates[2]);
+        }
+        Point pointFromInput = new Point(inputX, inputY, selected);
+        System.out.println("x=" + pointFromInput.getX() + ", y=" + pointFromInput.getY() + ", selected=" + pointFromInput.isSelected());
     }
 }

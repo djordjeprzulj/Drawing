@@ -53,4 +53,18 @@ public class Rectangle {
     public double area() {
         return this.width * this.height;
     }
+
+    public boolean contains(Point p) {
+        boolean containsX = p.getX() > this.upperLeft.getX() && p.getX() < this.upperLeft.getX() + this.width;
+        boolean containsY = p.getX() > this.upperLeft.getX() && p.getX() < this.upperLeft.getX() + this.width;
+        return containsX && containsY;
+    }
+
+    public boolean contains(int x, int y) {
+        return contains(new Point(x, y));
+    }
+
+    public Point getLowerRight() {
+        return new Point(this.upperLeft.getX() + this.width, this.upperLeft.getY() + this.height);
+    }
 }

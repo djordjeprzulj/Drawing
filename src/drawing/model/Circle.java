@@ -43,4 +43,12 @@ public class Circle {
     public double area() {
         return this.radius * this.radius * Math.PI;
     }
+
+    public boolean contains(Point p) {
+        return this.center.distance(p) <= this.radius;
+    }
+
+    public boolean contains(int x, int y) {
+        return this.contains(new Point(x ,y));
+    }
 }
