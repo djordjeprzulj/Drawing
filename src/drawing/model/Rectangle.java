@@ -56,7 +56,7 @@ public class Rectangle {
 
     public boolean contains(Point p) {
         boolean containsX = p.getX() > this.upperLeft.getX() && p.getX() < this.upperLeft.getX() + this.width;
-        boolean containsY = p.getX() > this.upperLeft.getX() && p.getX() < this.upperLeft.getX() + this.height;
+        boolean containsY = p.getY() > this.upperLeft.getY() && p.getY() < this.upperLeft.getY() + this.height;
         return containsX && containsY;
     }
 
