@@ -1,5 +1,7 @@
 package drawing.model;
 
+import java.util.Objects;
+
 public class Point {
 
     private int x;
@@ -44,5 +46,14 @@ public class Point {
         int dx = this.x - p.x;
         int dy = this.y - p.y;
         return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Point) {
+            Point p = (Point) obj;
+            return this.x == p.x && this.y == p.y;
+        }
+        return false;
     }
 }

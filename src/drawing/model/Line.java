@@ -32,11 +32,24 @@ public class Line {
         this.endPoint = endPoint;
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+
     public void setSelected(boolean selected) {
         this.selected = selected;
     }
 
     public double length() {
         return this.startPoint.distance(this.endPoint);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof  Line) {
+            Line l = (Line) obj;
+            return this.startPoint.equals(l.startPoint);
+        }
+        return false;
     }
 }

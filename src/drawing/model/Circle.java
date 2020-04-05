@@ -51,4 +51,12 @@ public class Circle {
     public boolean contains(int x, int y) {
         return this.contains(new Point(x ,y));
     }
+
+    public boolean equals(Object obj) {
+        if (obj instanceof Circle) {
+            Circle c = (Circle) obj;
+            return this.center.equals(c.center) && this.radius == c.radius;
+        }
+        return false;
+    }
 }

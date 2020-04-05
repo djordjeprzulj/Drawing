@@ -67,4 +67,12 @@ public class Rectangle {
     public Point getLowerRight() {
         return new Point(this.upperLeft.getX() + this.width, this.upperLeft.getY() + this.height);
     }
+
+    public boolean equals(Object obj) {
+        if (obj instanceof  Rectangle) {
+            Rectangle r = (Rectangle) obj;
+            return this.upperLeft.equals(r.upperLeft) && this.width == r.width && this.height == r.height;
+        }
+        return false;
+    }
 }

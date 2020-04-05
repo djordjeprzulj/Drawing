@@ -1,6 +1,7 @@
 package drawing.test;
 
 import drawing.model.Circle;
+import drawing.model.Donut;
 import drawing.model.Point;
 import drawing.model.Rectangle;
 
@@ -31,7 +32,7 @@ public class TestGeometry {
         System.out.println(p5.getX());
 
         Point p6 = new Point(p3.getX(), p3.getY());
-
+/*
         System.out.println("Upisite parametre za kreiranje tacke:");
         Scanner scanner = new Scanner(System.in);
         String pointInput = scanner.nextLine();
@@ -44,5 +45,9 @@ public class TestGeometry {
         }
         Point pointFromInput = new Point(inputX, inputY, selected);
         System.out.println("x=" + pointFromInput.getX() + ", y=" + pointFromInput.getY() + ", selected=" + pointFromInput.isSelected());
+ */
+        Donut d1 = new Donut(new Point(10, 20), 30, 20);
+        Donut d2 = new Donut(new Point(10, 20), 30, 20);
+        System.out.println(d1.equals(d2));
     }
 }
