@@ -11,9 +11,13 @@ public class Polyline {
     }
 
     public boolean addSegment(Line newSegment) {
-        Line lastSegment = this.segments.get(this.segments.size() - 1);
-        if (lastSegment.getEndPoint().equals(newSegment.getStartPoint())) {
+        if (this.segments.isEmpty()) {
             return this.segments.add(newSegment);
+        } else {
+            Line lastSegment = this.segments.get(this.segments.size() - 1);
+            if (lastSegment.getEndPoint().equals(newSegment.getStartPoint())) {
+                return this.segments.add(newSegment);
+            }
         }
         return false;
     }
