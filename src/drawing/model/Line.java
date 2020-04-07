@@ -52,4 +52,8 @@ public class Line {
         }
         return false;
     }
+
+    public String toString() {
+        return "Start:" + this.startPoint + ", End:" + this.endPoint;
+    }
 }

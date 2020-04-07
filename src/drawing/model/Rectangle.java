@@ -75,4 +75,8 @@ public class Rectangle {
         }
         return false;
     }
+
+    public String toString() {
+        return "Left upper:" + this.upperLeft + ", Width:" + this.width + ", Height:" + this.height;
+    }
 }

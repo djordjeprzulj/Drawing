@@ -59,4 +59,8 @@ public class Circle {
         }
         return false;
     }
+
+    public String toString() {
+        return "Center:" + this.center + ", Radius:" + this.radius;
+    }
 }

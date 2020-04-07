@@ -1,7 +1,5 @@
 package drawing.model;
 
-import java.util.Objects;
-
 public class Point {
 
     private int x;
@@ -56,4 +54,9 @@ public class Point {
         }
         return false;
     }
+
+    public String toString() {
+        return "(" + this.x + "," + this.y + ")";
+    }
+
 }
