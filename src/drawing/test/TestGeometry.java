@@ -5,6 +5,7 @@ import drawing.model.Donut;
 import drawing.model.Point;
 import drawing.model.Rectangle;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TestGeometry {
@@ -45,9 +46,33 @@ public class TestGeometry {
         }
         Point pointFromInput = new Point(inputX, inputY, selected);
         System.out.println("x=" + pointFromInput.getX() + ", y=" + pointFromInput.getY() + ", selected=" + pointFromInput.isSelected());
- */
+
         Donut d1 = new Donut(new Point(10, 20), 30, 20);
         Donut d2 = new Donut(new Point(10, 20), 30, 20);
         System.out.println(d1.equals(d2));
+
+        Point[] arrayOfPoints = {p1, p2, p5};
+        for (Point point : arrayOfPoints) {
+            System.out.println(point);
+        }
+
+        ArrayList<Point> listOfPoints = new ArrayList<>();
+        listOfPoints.add(p5);
+        listOfPoints.add(p1);
+        for (Point point : listOfPoints) {
+            System.out.println(point);
+        }
+        */
+        Circle cstr = new Circle(new Point(10, 20), 30);
+        System.out.println(cstr);
+/*
+        Polyline pll = new Polyline();
+        pll.addSegment(l1);
+        //...
+        if (!pll.addSegment(l5)) {
+            System.out.println("Neuspesno dodavanje segmenta u poliliniju");
+        }
+
+ */
     }
 }

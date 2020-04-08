@@ -14,12 +14,14 @@ public class Polyline2 {
 
     public boolean addSegment(Line newSegment) {
         if (this.lastSegmentIndex == -1) {
-            this.segments[lastSegmentIndex++] = newSegment;
+            this.segments[++lastSegmentIndex] = newSegment;
             return true;
-        } else {
+        } else if (this.lastSegmentIndex == 9) {
+            return false;
+        }  else {
             Line lastSegment = this.segments[lastSegmentIndex];
             if (lastSegment.getEndPoint().equals(newSegment.getStartPoint())) {
-                this.segments[lastSegmentIndex++] = newSegment;
+                this.segments[++lastSegmentIndex] = newSegment;
                 return true;
             }
         }
