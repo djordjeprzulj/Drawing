@@ -1,5 +1,7 @@
 package drawing.model;
 
+import java.awt.*;
+
 public class Line {
 
     private Point startPoint;
@@ -55,5 +57,9 @@ public class Line {
 
     public String toString() {
         return "Start:" + this.startPoint + ", End:" + this.endPoint;
+    }
+
+    public void draw(Graphics g) {
+        g.drawLine(this.startPoint.getX(), this.getStartPoint().getY(), this.endPoint.getX(), this.endPoint.getY());
     }
 }

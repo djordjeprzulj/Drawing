@@ -1,6 +1,6 @@
 package drawing.model;
 
-public class Donut extends Circle {
+public class Donut extends Circle implements Comparable {
 
     private int innerRadius;
 
@@ -37,5 +37,10 @@ public class Donut extends Circle {
 
     public String toString() {
         return super.toString() + ", Inner radius:" + this.innerRadius;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return (int)(this.area() - ((Donut)o).area());
     }
 }

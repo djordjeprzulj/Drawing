@@ -1,9 +1,6 @@
 package drawing.test;
 
-import drawing.model.Circle;
-import drawing.model.Donut;
-import drawing.model.Point;
-import drawing.model.Rectangle;
+import drawing.model.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -63,16 +60,31 @@ public class TestGeometry {
             System.out.println(point);
         }
         */
-        Circle cstr = new Circle(new Point(10, 20), 30);
-        System.out.println(cstr);
-/*
-        Polyline pll = new Polyline();
-        pll.addSegment(l1);
-        //...
-        if (!pll.addSegment(l5)) {
-            System.out.println("Neuspesno dodavanje segmenta u poliliniju");
-        }
 
- */
+        Object[] objects = new Object[3];
+        objects[0] = new Point(5, 7);
+        objects[1] = new Line(new Point(1, 0), new Point(5, 0));
+        objects[2] = new Circle(new Point(5, 7), 6);
+        for (int i = 0; i < objects.length; i++) {
+            System.out.println(objects[i].toString());
+            /*
+            if (objects[i] instanceof Point)
+                System.out.println(((Point)objects[i]).toString());
+            else if (objects[i] instanceof Line)
+                System.out.println(((Line)objects[i]).toString());
+            else if (objects[i] instanceof Circle)
+                System.out.println(((Circle)objects[i]).toString());
+
+             */
+        }
+        Donut d1 = new Donut(p1, 55, 22);
+        Donut d2 = new Donut(p1, 60, 20);
+        if (d1.compareTo(d2) == 0) {
+            System.out.println("d1 i d2 imaju iste povrsine");
+        } else if(d1.compareTo(d2) > 0) {
+            System.out.println("d1 ima vecu povrsinu od d2");
+        } else {
+            System.out.println("d1 ima manju povrsinu od d2");
+        }
     }
 }
