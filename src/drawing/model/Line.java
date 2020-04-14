@@ -2,11 +2,10 @@ package drawing.model;
 
 import java.awt.*;
 
-public class Line {
+public class Line extends Shape implements Movable {
 
     private Point startPoint;
     private Point endPoint;
-    private boolean selected;
 
     public Line(Point startPoint, Point endPoint) {
         this.startPoint = startPoint;
@@ -14,8 +13,9 @@ public class Line {
     }
 
     public Line(Point startPoint, Point endPoint, boolean selected) {
-        this(startPoint, endPoint);
-        this.selected = selected;
+        super(selected);
+        this.startPoint = startPoint;
+        this.endPoint = endPoint;
     }
 
     public Point getStartPoint() {
@@ -32,14 +32,6 @@ public class Line {
 
     public void setEndPoint(Point endPoint) {
         this.endPoint = endPoint;
-    }
-
-    public boolean isSelected() {
-        return selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
     }
 
     public double length() {
@@ -61,5 +53,16 @@ public class Line {
 
     public void draw(Graphics g) {
         g.drawLine(this.startPoint.getX(), this.getStartPoint().getY(), this.endPoint.getX(), this.endPoint.getY());
+    }
+
+    @Override
+    public boolean contains(int x, int y) {
+        return this.startPoint.distance(new Point(x, y)) + this.endPoint.distance(new Point(x, y)) - this.length() <= 3.0D;
+    }
+
+    @Override
+    public void moveBy(int byX, int byY) {
+        this.startPoint.moveBy(byX, byY);
+        this.endPoint.moveBy(byX, byY);
     }
 }

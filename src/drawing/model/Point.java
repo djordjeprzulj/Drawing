@@ -1,19 +1,22 @@
 package drawing.model;
 
-public class Point {
+import java.awt.*;
+
+public class Point extends Shape implements Movable {
 
     private int x;
     private int y;
-    private boolean selected;
 
     public Point(int x, int y) {
+        super();
         this.x = x;
         this.y = y;
     }
 
     public Point(int x, int y, boolean selected) {
-        this(x, y);
-        this.selected = selected;
+        super(selected);
+        this.x = x;
+        this.y = y;
     }
 
     public int getX() {
@@ -30,14 +33,6 @@ public class Point {
 
     public void setY(int y) {
         this.y = y;
-    }
-
-    public boolean isSelected() {
-        return selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
     }
 
     public double distance(Point p) {
@@ -59,4 +54,20 @@ public class Point {
         return "(" + this.x + "," + this.y + ")";
     }
 
+    @Override
+    public void moveBy(int byX, int byY) {
+        this.x += byX;
+        this.y += byY;
+    }
+
+    @Override
+    public void draw(Graphics g) {
+        g.drawLine(this.x, this.y, this.x, this.y);
+    }
+
+    @Override
+    public boolean contains(int x, int y) {
+        // return this.x == x && this.y == y;
+        return this.distance(new Point(x, y)) < 3;
+    }
 }

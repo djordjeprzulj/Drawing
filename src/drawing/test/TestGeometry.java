@@ -3,6 +3,7 @@ package drawing.test;
 import drawing.model.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 
 public class TestGeometry {
@@ -43,7 +44,7 @@ public class TestGeometry {
         }
         Point pointFromInput = new Point(inputX, inputY, selected);
         System.out.println("x=" + pointFromInput.getX() + ", y=" + pointFromInput.getY() + ", selected=" + pointFromInput.isSelected());
-
+ */
         Donut d1 = new Donut(new Point(10, 20), 30, 20);
         Donut d2 = new Donut(new Point(10, 20), 30, 20);
         System.out.println(d1.equals(d2));
@@ -59,7 +60,6 @@ public class TestGeometry {
         for (Point point : listOfPoints) {
             System.out.println(point);
         }
-        */
 
         Object[] objects = new Object[3];
         objects[0] = new Point(5, 7);
@@ -77,6 +77,7 @@ public class TestGeometry {
 
              */
         }
+        /*
         Donut d1 = new Donut(p1, 55, 22);
         Donut d2 = new Donut(p1, 60, 20);
         if (d1.compareTo(d2) == 0) {
@@ -85,6 +86,21 @@ public class TestGeometry {
             System.out.println("d1 ima vecu povrsinu od d2");
         } else {
             System.out.println("d1 ima manju povrsinu od d2");
+        }
+         */
+        ArrayList<Shape> shapes = new ArrayList<>();
+        shapes.add(new Point(100, 200));
+        shapes.add(new Line(new Point(100, 100), new Point(200, 200)));
+        shapes.add(new Circle(new Point(100, 100), 200));
+        shapes.add(new Rectangle(new Point(300, 300), 300, 200));
+        for (Shape shape : shapes) {
+            System.out.println(shape.contains(100, 200));
+        }
+
+        ArrayList<Movable> movables = new ArrayList<>();
+        movables.addAll(shapes);
+        for (Movable movable : movables) {
+            movable.moveBy(20, 30);
         }
     }
 }

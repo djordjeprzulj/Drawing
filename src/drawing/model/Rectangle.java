@@ -1,6 +1,8 @@
 package drawing.model;
 
-public class Rectangle {
+import java.awt.*;
+
+public class Rectangle extends Shape implements Movable {
 
     private Point upperLeft;
     private int width;
@@ -50,6 +52,11 @@ public class Rectangle {
         this.selected = selected;
     }
 
+    @Override
+    public void draw(Graphics g) {
+        g.drawRect(this.upperLeft.getX(), this.upperLeft.getY(), this.width, this.height);
+    }
+
     public double area() {
         return this.width * this.height;
     }
@@ -78,5 +85,10 @@ public class Rectangle {
 
     public String toString() {
         return "Left upper:" + this.upperLeft + ", Width:" + this.width + ", Height:" + this.height;
+    }
+
+    @Override
+    public void moveBy(int byX, int byY) {
+
     }
 }

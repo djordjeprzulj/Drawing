@@ -1,6 +1,8 @@
 package drawing.model;
 
-public class Circle {
+import java.awt.*;
+
+public class Circle extends Shape implements Movable {
 
     private Point center;
     private int radius;
@@ -64,4 +66,12 @@ public class Circle {
         return "Center:" + this.center + ", Radius:" + this.radius;
     }
 
+    public void draw(Graphics g) {
+        g.drawOval(this.center.getX() - this.radius, this.center.getY() - this.radius, 2 * this.radius, 2 * this.radius);
+    }
+
+    @Override
+    public void moveBy(int byX, int byY) {
+        this.center.moveBy(byX, byY);
+    }
 }
