@@ -18,7 +18,9 @@ public class Donut extends Circle implements Comparable {
         return innerRadius;
     }
 
-    public void setInnerRadius(int innerRadius) {
+    public void setInnerRadius(int innerRadius) throws Exception {
+        if (innerRadius > this.radius)
+            throw new Exception("Unutrasnji radijus je veci od spoljasnjeg.");
         this.innerRadius = innerRadius;
     }
 

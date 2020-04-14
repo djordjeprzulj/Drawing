@@ -1,5 +1,6 @@
 package drawing.test;
 
+import drawing.exceptions.CircleException;
 import drawing.model.*;
 
 import java.util.ArrayList;
@@ -101,6 +102,28 @@ public class TestGeometry {
         movables.addAll(shapes);
         for (Movable movable : movables) {
             movable.moveBy(20, 30);
+        }
+
+        Donut donut = new Donut(p1, 300, 100);
+        try {
+            System.out.println("Upisite vrednost za unutrasnji poluprecnik:");
+            Scanner scanner = new Scanner(System.in);
+            String strInnerRadius =  scanner.nextLine();
+            int innerRadius = Integer.parseInt(strInnerRadius);
+            donut.setInnerRadius(innerRadius);
+
+            System.out.println("Upisite vrednost za spoljni poluprecnik:");
+            scanner = new Scanner(System.in);
+            String strRadius = scanner.nextLine();
+            int radius = Integer.parseInt(strRadius);
+            donut.setRadius(radius);
+
+        } catch(NumberFormatException nfe) {
+            System.out.println("Greska pri konverziji u int " + nfe.getMessage());
+        } catch(CircleException cex) {
+            System.out.println(cex.getMessage());
+        } catch(Exception exc) {
+            System.out.println(exc.getMessage());
         }
     }
 }

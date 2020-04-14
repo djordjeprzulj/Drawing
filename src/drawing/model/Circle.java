@@ -1,11 +1,13 @@
 package drawing.model;
 
+import drawing.exceptions.CircleException;
+
 import java.awt.*;
 
 public class Circle extends Shape implements Movable {
 
-    private Point center;
-    private int radius;
+    protected Point center;
+    protected int radius;
     private boolean selected;
 
     public Circle(Point center, int radius) {
@@ -30,7 +32,10 @@ public class Circle extends Shape implements Movable {
         return radius;
     }
 
-    public void setRadius(int radius) {
+    public void setRadius(int radius) throws CircleException {
+        if (radius <= 0) {
+            throw new CircleException("Radijus mora biti > 0.", this);
+        }
         this.radius = radius;
     }
 
