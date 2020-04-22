@@ -3,8 +3,9 @@ package drawing.model;
 import drawing.exceptions.CircleException;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class Circle extends Shape implements Movable {
+public class Circle extends Shape implements Movable, Serializable {
 
     protected Point center;
     protected int radius;

@@ -1,8 +1,9 @@
 package drawing.model;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class Point extends Shape implements Movable {
+public class Point extends Shape implements Movable, Serializable {
 
     private int x;
     private int y;
@@ -63,6 +64,11 @@ public class Point extends Shape implements Movable {
     @Override
     public void draw(Graphics g) {
         g.drawLine(this.x, this.y, this.x, this.y);
+        if (this.selected) {
+            g.setColor(Color.BLUE);
+            g.drawRect(this.x - 2, this.y - 2, 4, 4);
+            g.setColor(Color.BLACK);
+        }
     }
 
     @Override

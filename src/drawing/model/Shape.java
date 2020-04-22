@@ -4,7 +4,7 @@ import java.awt.*;
 
 public abstract class Shape implements Movable {
 
-    private boolean selected;
+    protected boolean selected;
 
     public Shape() {
     }

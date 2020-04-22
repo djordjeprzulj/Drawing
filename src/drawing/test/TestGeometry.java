@@ -121,7 +121,7 @@ public class TestGeometry {
         } catch(NumberFormatException nfe) {
             System.out.println("Greska pri konverziji u int " + nfe.getMessage());
         } catch(CircleException cex) {
-            System.out.println(cex.getMessage());
+            System.out.println(cex.getMessage() + " Circle: " + cex.getCircle());
         } catch(Exception exc) {
             System.out.println(exc.getMessage());
         }
