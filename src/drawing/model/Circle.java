@@ -74,6 +74,14 @@ public class Circle extends Shape implements Movable, Serializable {
 
     public void draw(Graphics g) {
         g.drawOval(this.center.getX() - this.radius, this.center.getY() - this.radius, 2 * this.radius, 2 * this.radius);
+        if (this.selected) {
+            g.setColor(Color.BLUE);
+            g.drawRect(this.center.getX() - 2, this.center.getY() - this.radius - 2, 4, 4);
+            g.drawRect(this.center.getX() - this.radius - 2, this.center.getY()  - 2, 4, 4);
+            g.drawRect(this.center.getX() - 2, this.center.getY() + this.radius - 2, 4, 4);
+            g.drawRect(this.center.getX() + this.radius - 2, this.center.getY()  - 2, 4, 4);
+            g.setColor(Color.BLACK);
+        }
     }
 
     @Override

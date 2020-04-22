@@ -1,5 +1,8 @@
 package drawing.gui;
 
+import drawing.model.Circle;
+import drawing.model.Line;
+import drawing.model.Point;
 import drawing.model.Shape;
 
 import javax.swing.*;
@@ -20,14 +23,9 @@ public class FrmDrawing {
     private JToggleButton tglCircle;
     private JToggleButton tglDonut;
     private DrawingPanel drawingPanel1;
+    private Shape selection;
 
     public FrmDrawing() {
-        deleteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
         drawingPanel1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -35,11 +33,47 @@ public class FrmDrawing {
                 panelClicked(e);
             }
         });
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                deleteButtonActionPerformed();
+            }
+        });
+        editButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                editButtonActionPerformed();
+            }
+        });
+    }
+
+    private void editButtonActionPerformed() {
+        if (selection instanceof Circle) {
+            DlgCircle dlg = new DlgCircle();
+            dlg.setCircle((Circle) selection);
+            dlg.pack();
+            dlg.setVisible(true);
+        }
+        // dodati kod za ostale vrste oblika
+        this.drawingPanel1.repaint();
+    }
+
+    private void deleteButtonActionPerformed() {
+        int confirm = JOptionPane.showConfirmDialog(this.drawingPanel1, "Are you sure... ?", "Deletion",
+                JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            this.drawingPanel1.getShapes().remove(this.selection);
+            this.drawingPanel1.repaint();
+            this.selection = null;
+            this.deleteButton.setEnabled(false);
+            this.editButton.setEnabled(false);
+        }
+
     }
 
     private void panelClicked(MouseEvent e) {
         if (this.tglSelection.isSelected()) {
-            Shape selection = null;
+            selection = null;
             for (Shape shape : this.drawingPanel1.getShapes()) {
                 shape.setSelected(false);
                 if (shape.contains(e.getX(), e.getY())) {
@@ -48,12 +82,39 @@ public class FrmDrawing {
             }
             if (selection != null) {
                 selection.setSelected(true);
+                this.deleteButton.setEnabled(true);
+                this.editButton.setEnabled(true);
+            } else {
+                this.deleteButton.setEnabled(false);
+                this.editButton.setEnabled(false);
             }
+        } else if (this.tglPoint.isSelected()) {
+            this.drawingPanel1.getShapes().add(new Point(e.getX(), e.getY()));
+        } else if (this.tglLine.isSelected()) {
+            if (this.drawingPanel1.getStartPoint() == null) {
+                this.drawingPanel1.setStartPoint(new Point(e.getX(), e.getY()));
+            } else {
+                this.drawingPanel1.getShapes().add(new Line(this.drawingPanel1.getStartPoint(), new Point(e.getX(), e.getY())));
+                this.drawingPanel1.setStartPoint(null);
+            }
+        } else if (this.tglRectangle.isSelected()) {
+            DlgRectangle dlg = new DlgRectangle();
+            dlg.pack();
+            dlg.setVisible(true);
+            this.drawingPanel1.getShapes().add(dlg.getRectangle());
         } else if (this.tglCircle.isSelected()) {
             DlgCircle dlg = new DlgCircle();
+            dlg.pack();
+            dlg.setCircle(new Circle(new Point(e.getX(), e.getY()), -1));
             dlg.setVisible(true);
-            this.drawingPanel1.getShapes().add(dlg.getCircle());
-
+            if (dlg.getCircle() != null) {
+                this.drawingPanel1.getShapes().add(dlg.getCircle());
+            }
+        } else if (this.tglDonut.isSelected()) {
+            DlgDonut dlg = new DlgDonut();
+            dlg.pack();
+            dlg.setVisible(true);
+            this.drawingPanel1.getShapes().add(dlg.getDonut());
         }
         this.drawingPanel1.repaint();
     }

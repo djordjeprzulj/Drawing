@@ -1,5 +1,6 @@
 package drawing.gui;
 
+import drawing.model.Point;
 import drawing.model.Shape;
 
 import javax.swing.*;
@@ -9,6 +10,8 @@ import java.util.ArrayList;
 public class DrawingPanel extends JPanel {
 
     private ArrayList<Shape> shapes = new ArrayList<>();
+
+    private Point startPoint;
 
     public ArrayList<Shape> getShapes() {
         return shapes;
@@ -21,5 +24,13 @@ public class DrawingPanel extends JPanel {
         for (Shape shape : this.shapes) {
             shape.draw(g);
         }
+    }
+
+    public Point getStartPoint() {
+        return startPoint;
+    }
+
+    public void setStartPoint(Point startPoint) {
+        this.startPoint = startPoint;
     }
 }

@@ -1,25 +1,18 @@
 package drawing.gui;
 
-import drawing.exceptions.CircleException;
-import drawing.model.Circle;
+import drawing.model.Donut;
 
 import javax.swing.*;
 import java.awt.event.*;
 
-public class DlgCircle extends JDialog {
+public class DlgDonut extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JLabel lblCenterX;
-    private JLabel lblCenterY;
-    private JLabel lblRadius;
-    private JTextField txtCenterX;
-    private JTextField txtCenterY;
-    private JTextField txtRadius;
 
-    private Circle circle;
+    private Donut donut;
 
-    public DlgCircle() {
+    public DlgDonut() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -54,39 +47,26 @@ public class DlgCircle extends JDialog {
 
     private void onOK() {
         // add your code here
-        this.circle.getCenter().setX(Integer.parseInt(this.txtCenterX.getText()));
-        this.circle.getCenter().setY(Integer.parseInt(this.txtCenterY.getText()));
-        try {
-            this.circle.setRadius(Integer.parseInt(this.txtRadius.getText()));
-        } catch (CircleException e) {
-            e.printStackTrace();
-        }
         dispose();
     }
 
     private void onCancel() {
         // add your code here if necessary
-        circle = null;
         dispose();
     }
 
     public static void main(String[] args) {
-        DlgCircle dialog = new DlgCircle();
+        DlgDonut dialog = new DlgDonut();
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
     }
 
-    public Circle getCircle() {
-        return circle;
+    public Donut getDonut() {
+        return donut;
     }
 
-    public void setCircle(Circle circle) {
-        this.circle = circle;
-        this.txtCenterX.setText(String.valueOf(circle.getCenter().getX()));
-        this.txtCenterY.setText(String.valueOf(circle.getCenter().getY()));
-        if (circle.getRadius() != -1) {
-            this.txtRadius.setText(String.valueOf(circle.getRadius()));
-        }
+    public void setDonut(Donut donut) {
+        this.donut = donut;
     }
 }
